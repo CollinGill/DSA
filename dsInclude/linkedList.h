@@ -1,18 +1,17 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
-struct Node
+typedef struct
 {
     int data;
-    char* key;
     struct Node* next;
-};
+} Node;
 
-struct List
+typedef struct
 {
     struct Node* head;
     struct Node* tail;
     int size;
-};
+} LinkedList;
 
 #endif
