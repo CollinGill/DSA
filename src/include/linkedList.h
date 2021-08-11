@@ -1,29 +1,36 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
-typedef struct Node
+typedef struct LNode
 {
+    int key;
     int data;
-    struct Node* next;
-} Node;
+    struct LNode* next;
+} LNode;
 
 typedef struct LinkedList
 {
-    struct Node* head;
-    struct Node* tail;
+    struct LNode* head;
+    struct LNode* tail;
     int size;
 } LinkedList;
 
-Node* createNode(int data);
+LNode* createNode(int key, int data);
 
 LinkedList initializeList();
 
-void printNode(Node* node);
+void printNode(LNode* node);
 
 void printLinkedList(LinkedList list);
 
-LinkedList addFront(LinkedList list, Node* node);
+LinkedList addFront(LinkedList list, LNode* node);
 
-LinkedList addLast(LinkedList list, Node* node);
+LinkedList addLast(LinkedList list, LNode* node);
+
+LinkedList removeFront(LinkedList list);
+
+LinkedList removeLast(LinkedList list);
+
+LinkedList removeKey(LinkedList list, int key);
 
 #endif
