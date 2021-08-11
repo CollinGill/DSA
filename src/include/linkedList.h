@@ -22,6 +22,6 @@ void printNode(Node* node);
 
 void printLinkedList(LinkedList list);
 
-LinkedList addFront(LinkedList list, Node* node);
+Node* addFront(LinkedList list, Node* node);
 
 #endif

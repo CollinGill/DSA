@@ -43,20 +43,19 @@ void printLinkedList(LinkedList list)
     printf("\n");
 }
 
-LinkedList addFront(LinkedList list, Node* node)
+Node* addFront(LinkedList list, Node* node)
 {
     if (list.head == NULL)
     {
-        list.head = node;
-        list.tail = node;
+        list.head = list.tail = node;
         list.size++;
-        return list;
+        return list.head;
     }
     else
     {
         node->next = list.head;
         list.head = node;
         list.size++;
-        return list;
+        return list.head;
     }
 }
