@@ -40,22 +40,35 @@ void printLinkedList(LinkedList list)
         currentNode = currentNode->next;
     }
 
-    printf("\n");
+    printf("\nSize: %d\n", list.size);
 }
 
-Node* addFront(LinkedList list, Node* node)
+LinkedList addFront(LinkedList list, Node* node)
 {
     if (list.head == NULL)
     {
         list.head = list.tail = node;
         list.size++;
-        return list.head;
+        return list;
     }
     else
     {
         node->next = list.head;
         list.head = node;
         list.size++;
-        return list.head;
+        return list;
+    }
+}
+
+LinkedList addLast(LinkedList list, Node* node)
+{
+    if (list.head == NULL)
+        return addFront(list, node);
+    else
+    {
+        list.tail->next = node;
+        list.tail = list.tail->next;
+        list.size++;
+        return list;
     }
 }
