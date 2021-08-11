@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "include/tests.h"
 
 void linkedListTest()
@@ -31,4 +30,33 @@ void linkedListTest()
     mainList = removeKey(mainList, 3);
 
     printLinkedList(mainList);
+}
+
+void stackTest()
+{
+    printf("Initializing stack...\n");
+    Stack* stack = initializeStack();
+
+    printf("Pushing values to the stack...\n");
+    for (int i = 0; i < 10; i++)
+        push(stack, i * 2);
+
+    printf("Original stack:\n");
+    printStack(stack);
+
+    printf("Popping down to nothing...\n");
+    for (int i = 9; i >= 0; i--)
+        printf("Popped value: %d\n", pop(stack));
+
+    printf("New stack:\n");
+    printStack(stack);
+}
+
+void runTests()
+{
+    printf("Running test: Linked List...\n\n");
+    linkedListTest();
+
+    printf("\n\nRunning test: Stack\n\n");
+    stackTest();
 }
