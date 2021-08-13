@@ -37,10 +37,8 @@ void printList(LinkedList* list)
             printNode(currentNode);
             currentNode = currentNode->next;
         }
-        currentNode = NULL;
-        free(currentNode);
     }
-    printf("Size: %d\n", list->size);
+    printf("\nSize: %d\n", list->size);
 }
 
 void addFront(LinkedList* list, int data, int key)
@@ -57,7 +55,7 @@ void addFront(LinkedList* list, int data, int key)
     list->size++;
 }
 
-void addEnd(LinkedList* list, int data, int key)
+void addLast(LinkedList* list, int data, int key)
 {
     if (list->head == NULL)
         addFront(list, data, key);
@@ -94,8 +92,6 @@ void addAtIndex(LinkedList* list, int index, int data, int key)
         }
     }
     currentNode = previousNode = NULL;
-    free(currentNode);
-    free(previousNode);
 }
 
 int removeFront(LinkedList* list)
@@ -104,7 +100,7 @@ int removeFront(LinkedList* list)
     int obsoleteData = list->head->data;
     Node* obsolete = list->head;
 
-    if (list->head = list->tail)
+    if (list->head == list->tail)
         list->head = list->tail = NULL;
     else
         list->head = list->head->next;
@@ -156,6 +152,7 @@ int removeAtIndex(LinkedList* list, int index)
     {
         obsoleteData = list->head->data;
         list->head = list->tail = NULL;
+        free(list->head);
         list->size--;
         return obsoleteData;
     }
@@ -173,6 +170,7 @@ int removeAtIndex(LinkedList* list, int index)
                 previousNode = currentNode = NULL;
                 free(previousNode);
                 free(currentNode);
+                list->size--;
                 return obsoleteData;
             }
             else
@@ -180,6 +178,57 @@ int removeAtIndex(LinkedList* list, int index)
                 previousNode = currentNode;
                 currentNode = currentNode->next;
                 i++;
+            }
+        }
+    }
+}
+
+// Returns 1 for true, 0 for false
+int keyExists(LinkedList* list, int key)
+{
+    if (list->head == NULL)
+        return 0;
+    else if (list->head->key == key || list->tail->key == key)
+        return 1;
+    else
+    {
+        Node* currentNode = list->head->next;
+        while (currentNode != list->tail)
+        {
+            if (currentNode->key == key)
+                return 1;
+            else
+                currentNode = currentNode->next;    
+        }
+        return 0;
+    }
+}
+
+int removeKey(LinkedList* list, int key)
+{
+    assert(keyExists(list, key) == 1);
+    if (list->head->key == key)
+        return removeFront(list);
+    else if (list->tail->key == key)
+        return removeLast(list);
+    else
+    {
+        Node* currentNode = list->head->next;
+        Node* previousNode = list->head; 
+        while (currentNode != list->tail)
+        {
+            if (currentNode->key == key)
+            {
+                int obsoleteData = currentNode->data;
+                previousNode->next = currentNode->next;
+                free(currentNode);
+                list->size--;
+                return obsoleteData;
+            }
+            else
+            {
+                previousNode = currentNode;
+                currentNode = currentNode->next;
             }
         }
     }

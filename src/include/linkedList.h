@@ -29,7 +29,7 @@ void printList(LinkedList* list);
 
 void addFront(LinkedList* list, int data, int key);
 
-void addEnd(LinkedList* list, int data, int key);
+void addLast(LinkedList* list, int data, int key);
 
 void addAtIndex(LinkedList* list, int index, int data, int key);
 
@@ -40,5 +40,7 @@ int removeLast(LinkedList* list);
 int removeAtIndex(LinkedList* list, int index);
 
 int removeKey(LinkedList* list, int key);
+
+int keyExists(LinkedList* list, int key);
 
 #endif

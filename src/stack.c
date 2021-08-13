@@ -31,10 +31,6 @@ void printStack(Stack* stack)
             printf("%d\n", currentFrame->data);
             currentFrame = currentFrame->next;
         }
-
-        currentFrame = NULL;
-        free(currentFrame);
-
         printf("Stack size: %d\n", stack->size);
     }
 }
