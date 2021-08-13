@@ -2,7 +2,7 @@
 
 int main()
 {
-    linkedListTest();
+    runTests();
 
     return 0;
 }
