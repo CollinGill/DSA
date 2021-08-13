@@ -17,9 +17,6 @@ void linkedListTest()
     printf("Original list:\n");
     printList(mainList);
 
-
-
-
     printf("Removing first and last nodes...\n");
     int firstData = removeFront(mainList);
     int lastData = removeLast(mainList);
@@ -67,11 +64,19 @@ void stackTest()
     printStack(stack);
 }
 
+void queueTest()
+{
+    printf("Hello Queue!\n");
+}
+
 void runTests()
 {
     printf("Running test: Linked List...\n\n");
     linkedListTest();
 
-    printf("\n\nRunning test: Stack\n\n");
+    printf("\n\nRunning test: Stack...\n\n");
     stackTest();
+
+    printf("\n\nRunning test: Queue...\n\n");
+    queueTest();
 }
