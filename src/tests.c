@@ -6,7 +6,7 @@ void linkedListTest()
     LinkedList* mainList = initializeList();
 
     printf("Adding to list...\n");
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 20; i++)
     {
         if (i % 2 == 0)
             addFront(mainList, i * 2, i);
@@ -41,7 +41,6 @@ void linkedListTest()
     removeKey(mainList, givenKey);
     printf("New list:\n");
     printList(mainList);
-
 }
 
 void stackTest()
@@ -66,7 +65,18 @@ void stackTest()
 
 void queueTest()
 {
-    printf("Hello Queue!\n");
+    printf("Initializing queue...\n");
+    Queue* mainQueue = initializeQueue();
+
+    printf("Adding nodes to the queue...\n");
+    for (int i = 0; i < 20; i++)
+        enQueue(mainQueue, i, i * 2);
+    printQueue(mainQueue);
+
+    printf("Removing the front half of the queue...\n");
+    for (int i = 0; i < 10; i++)
+        deQueue(mainQueue);
+    printQueue(mainQueue);
 }
 
 void runTests()
