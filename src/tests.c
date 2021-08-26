@@ -37,7 +37,7 @@ void linkedListTest()
     printList(mainList);
 
     int givenKey = 1;
-    printf("Removing the first node with a the key %d...\n", givenKey);
+    printf("Removing the first node with a the key %d (key|node)...\n", givenKey);
     removeKey(mainList, givenKey);
     printf("New list:\n");
     printList(mainList);
