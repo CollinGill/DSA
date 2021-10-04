@@ -1,5 +1,17 @@
 #include "include/tests.h"
 
+void binaryTreeTest()
+{
+    printf("Generating binary tree...\n");
+    BinaryTree* mainBinaryTree = initializeBinaryTree();
+
+    printf("Adding to list...\n");
+    for (int i = 0; i < 20; i++)
+       insertBT(mainBinaryTree, i); 
+
+    printf("Original tree:\n");
+}
+
 void linkedListTest()
 {
     printf("Generating list...\n");
@@ -81,6 +93,9 @@ void queueTest()
 
 void runTests()
 {
+    printf("Running, test: Binary Tree...\n\n");
+    binaryTreeTest();
+
     printf("Running test: Linked List...\n\n");
     linkedListTest();
 
