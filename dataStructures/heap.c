@@ -33,18 +33,21 @@ void printHeap(BinaryHeap* binaryHeap)
 // Prints the heap in a more tree-like appearance
 void fancyPrint(BinaryHeap* binaryHeap)
 {
-    printf("\n");
     for (int i = 0; i < binaryHeap->lastPosition; i++) {
-
         for (int space = binaryHeap->lastPosition; space > i; space--)
             printf(" ");
 
-        for (int j = 0; j < pow((double)2, (double)i) && j + pow((double)2, (double)i) <= binaryHeap->lastPosition + 1; j++) {
-            if (j + pow((double)2, (double)i) >= binaryHeap->lastPosition + 1) {
-                printf("\n\n");
+        for (int j = 0; j < pow(2, i) && j + pow(2, i) <= binaryHeap->lastPosition + 1; j++) {
+            //if (j + pow(2, i) >= binaryHeap->lastPosition + 2) {
+            //    printf("\n");
+            //    return;
+            //}
+            if ((int)(j + pow(2, i) - 1) >= binaryHeap->lastPosition) {
+                int currentNumber = binaryHeap->array[(int)(j + pow(2, i) - 1)];
+                printf("%d\n\n", currentNumber);
                 return;
             }
-            int currentNumber = binaryHeap->array[(int)(j + pow((double)2, (double)i) - 1)];
+            int currentNumber = binaryHeap->array[(int)(j + pow(2, i) - 1)];
             printf("%d ", currentNumber);
         }
         printf("\n");
@@ -123,23 +126,20 @@ void resizeHeap(BinaryHeap* binaryHeap)
     binaryHeap->capacity = binaryHeap->capacity * 2;
     binaryHeap->array = realloc(binaryHeap->array, sizeof(int) * binaryHeap->capacity);
 
-    for (int i = 0; i < binaryHeap->capacity; i++)
+    for (int i = 0; i <= binaryHeap->capacity; i++)
         if (i >= oldSize)
             binaryHeap->array[i] = 0;
         else
             binaryHeap->array[i] = tempArr[i];
     assert(binaryHeap->array); // making sure memory allocated correctly
-    binaryHeap->lastPosition--;
 }
 
 // Inserts the value at the end of the heap and then recursively trickles up to the top until
 // the tree follows the rule of the heap (i.e. min/max)
-//
-// -- TODO: Losing data somewhere during the add function resizing--
 void add(BinaryHeap* binaryHeap, int value)
 {
-    if (binaryHeap->lastPosition == binaryHeap->capacity) {
-        printf("Heap too small...\n\nResizing...\n");
+    if (binaryHeap->lastPosition + 1 == binaryHeap->capacity) {
+        printf("Heap too small...\nResizing...\n");
         resizeHeap(binaryHeap);
         printf("Done, recalling add...\n");
     }
@@ -151,7 +151,8 @@ void add(BinaryHeap* binaryHeap, int value)
 int heapRemove(BinaryHeap* binaryHeap)
 {
     int temp = binaryHeap->array[0];
-    swap(binaryHeap->array, 0, binaryHeap->lastPosition--);
+    swap(binaryHeap->array, 0, binaryHeap->lastPosition);
+    binaryHeap->lastPosition--;
     trickleDown(binaryHeap, 0);
     return temp;
 }
@@ -164,7 +165,7 @@ int heapRemove(BinaryHeap* binaryHeap)
 
 int main()
 {
-    BinaryHeap* mainHeap = initializeHeap(5);
+    BinaryHeap* mainHeap = initializeHeap(10);
     printf("Testing add...\n");
     add(mainHeap, 0);
     add(mainHeap, 1);
@@ -175,7 +176,17 @@ int main()
     add(mainHeap, 6);
     add(mainHeap, 7);
     add(mainHeap, 8);
+    add(mainHeap, 9);
+    printHeap(mainHeap);
     fancyPrint(mainHeap);
 
+    printf("Testing remove...\n");
+    heapRemove(mainHeap);
+    heapRemove(mainHeap);
+    heapRemove(mainHeap);
+    heapRemove(mainHeap);
+    heapRemove(mainHeap);
+    heapRemove(mainHeap);
+    fancyPrint(mainHeap);
     return 0;
 }
