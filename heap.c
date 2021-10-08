@@ -31,6 +31,7 @@ void printHeap(BinaryHeap* binaryHeap)
 }
 
 // Prints the heap in a more tree-like appearance
+// Doesn't print all the way to the left for some reason, not really an issue
 void fancyPrint(BinaryHeap* binaryHeap)
 {
     for (int i = 0; i < binaryHeap->lastPosition; i++) {
@@ -188,5 +189,13 @@ int main()
     heapRemove(mainHeap);
     heapRemove(mainHeap);
     fancyPrint(mainHeap);
+
+    printf("Generating unsorted array for heapsort algorithm...\n");
+    int tempArr[20] = {2, 34 , 6, 123, 67856, 345, 3452, 123, 45, 3456, 
+                       2345, 234, 62, 435, 26, 4, 34, 69, 52, 345};
+    printf("Unsorted array:\n");
+    for (long unsigned int i = 0; i < sizeof(tempArr) / sizeof(tempArr[0]); i++)
+        printf("%d ", tempArr[i]);
+    printf("\n");
     return 0;
 }
