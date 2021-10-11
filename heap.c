@@ -4,7 +4,6 @@
 #include <stdlib.h>
 
 // -- Binary Heap -- //
-
 // Heaps either be implement by a linked list
 // Or as an array where the relation between children and parent (For indices) is
 // children: 2 * index of parrent + 1, 2 * index of parent + 2
@@ -158,12 +157,6 @@ int heapRemove(BinaryHeap* binaryHeap)
     return temp;
 }
 
-// Heapsort algorithm
-//void heapSort(BinaryHeap* binaryHeap)
-//{
-//
-//}
-
 int main()
 {
     BinaryHeap* mainHeap = initializeHeap(10);
@@ -190,12 +183,5 @@ int main()
     heapRemove(mainHeap);
     fancyPrint(mainHeap);
 
-    printf("Generating unsorted array for heapsort algorithm...\n");
-    int tempArr[20] = {2, 34 , 6, 123, 67856, 345, 3452, 123, 45, 3456, 
-                       2345, 234, 62, 435, 26, 4, 34, 69, 52, 345};
-    printf("Unsorted array:\n");
-    for (long unsigned int i = 0; i < sizeof(tempArr) / sizeof(tempArr[0]); i++)
-        printf("%d ", tempArr[i]);
-    printf("\n");
     return 0;
 }
