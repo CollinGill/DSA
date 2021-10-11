@@ -15,9 +15,9 @@ typedef struct Heap
 
 Heap* initializeHeap(int capacity);
 
-void trickleUp(Heap* heap, int parent);
+void trickleUp(Heap* heap, int position);
 
-void trickleDown(Heap* heap, int parent);
+void trickleDown(Heap* heap, int position);
 
 void resizeHeap(Heap* heap);
 
@@ -25,6 +25,6 @@ void swap(int* array, int from, int to);
 
 void heapAdd(Heap* heap, int value);
 
-void heapRemove(Heap* heap);
+int heapRemove(Heap* heap);
 
 #endif
